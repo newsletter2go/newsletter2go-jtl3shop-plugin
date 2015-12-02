@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding="ISO-8859-1"?>
+<jtlshop3plugin>
+    <Name>Newsletter2Go</Name>
+    <Description>JTL-Shop3-Synchronisation mit Newsletter2Go</Description>
+    <Author>Newsletter2Go</Author>
+    <URL>http://www.newsletter2go.de</URL>
+    <XMLVersion>102</XMLVersion>
+    <ShopVersion>300</ShopVersion>
+    <PluginID>newsletter2go</PluginID>
+    <Install>
+        <Version nr="100">
+            <CreateDate>2013-11-26</CreateDate>
+            <SQL>newsletter2go.sql</SQL>
+        </Version>
+        <Version nr="101">
+            <CreateDate>2013-03-03</CreateDate>
+        </Version>
+        <Version nr="102">
+            <CreateDate>2015-04-08</CreateDate>
+        </Version>
+        <Hooks>
+            <Hook id="29">nl2go_api.php</Hook>
+        </Hooks>
+        <Adminmenu>
+            <Customlink sort="1">
+                <Name>Zugangsdaten</Name>
+                <Filename>nl2go_admin.php</Filename>
+            </Customlink>
+        </Adminmenu>
+    </Install>
+</jtlshop3plugin>
