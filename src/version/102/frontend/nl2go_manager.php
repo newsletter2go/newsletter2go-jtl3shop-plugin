@@ -213,13 +213,13 @@ class Nl2goManager
 			// Create subscriber using the field definition.
 			foreach (self::getFieldDefinitions() as $fieldDefinition) {
 				// Name of the field in db.
-				$fieldName = $fieldDefinition['id'];		
+				$fieldName = $fieldDefinition['id'];
 
 				// If field is not requested, don't add it.
 				if (self::isFieldRequested($fieldName) === false) {
 					continue;
 				}
-				
+
 				// Determine whether the field exists in table and has a value.
 				$fieldValid = array_key_exists($fieldName, $subscriber) && empty($subscriber[$fieldName]) === false;
 
@@ -295,7 +295,7 @@ class Nl2goManager
 		// Get only customers from requested group.
 		if (empty($group) === false) {
 			$where[] = "c.kKundengruppe = $group";
-		}		
+		}
 
 		$emails = json_decode(filter_input(INPUT_POST, 'emails'));
 
@@ -600,7 +600,7 @@ class Nl2goManager
 
 		if ($attributes !== null) {
 			// If product attributes are passed and this field is included.
-			return array_search($attribute, $attributes) !== false;
+			return array_search($attributeName, $attributes) !== false;
 		} else {
 			return true;
 		}
@@ -719,7 +719,7 @@ class Nl2goManager
 
 	/**
 	 * Encodes the string or object and/or subobject properties which are strings to UTF8.
-	 * 
+	 *
 	 * @param type $input string or object to encode.
 	 */
 	public static function utf8Encode(&$input) {
@@ -758,7 +758,7 @@ class Nl2goManager
 
 	/**
 	 * Decrypts encripted fields so that they are readable
-	 * 
+	 *
 	 * @param array $customer
 	 * @return array - decrypted customer
 	 */
