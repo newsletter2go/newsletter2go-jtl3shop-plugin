@@ -1,1 +1,1 @@
-# newsletter2go-jtl3shop-plugin
+# Newsletter2Go JTL-Shop Plugin
