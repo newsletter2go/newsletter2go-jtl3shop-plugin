@@ -11,7 +11,7 @@ Build and deploy
 
 In order to build the plugin you can run the following command:
 
-    make 3.0.02
+    make version=3.0.02
     make clean
 
 This will create `newsletter2go_v3.0.02.zip` which you can then upload to your JTL-Shop installation.
