@@ -1,5 +1,5 @@
-version = 0.0.00
-outfile = newsletter2go_v$(version).zip
+version = 0_0_00
+outfile = JTLShop_nl2go_$(version).zip
 
 $(version): $(outfile)
 
