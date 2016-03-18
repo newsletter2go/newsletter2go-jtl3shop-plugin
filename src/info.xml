@@ -18,6 +18,9 @@
         <Version nr="102">
             <CreateDate>2015-04-08</CreateDate>
         </Version>
+        <Version nr="103">
+            <CreateDate>2016-03-18</CreateDate>
+        </Version>
         <Hooks>
             <Hook id="29">nl2go_api.php</Hook>
         </Hooks>
