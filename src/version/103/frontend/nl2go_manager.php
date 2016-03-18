@@ -182,6 +182,7 @@ class Nl2goManager
 						 END as cAnrede,
 						 ns.cVorname as cVorname,
 						 ns.cNachname as cNachname,
+						 1 as cNewsletter,
 						 cEmail as cMail
 					FROM " . self::NEWSLETTER_SUBSCRIBER_TABLE . " ns LEFT JOIN ".self::CUSTOMERS_TABLE." c ON ns.kKunde = c.kKunde
 				   WHERE nAktiv = 1 AND (ns.kKunde = 0 OR c.kKunde IS NULL)";
@@ -274,7 +275,7 @@ class Nl2goManager
 						 c.cWWW,
 						 c.cSperre,
 						 c.fGuthaben,
-						 c.cNewsletter,
+						 if(ns.nAktiv, 1, 0) as cNewsletter,
 						 c.dGeburtstag,
 						 c.fRabatt,
 						 c.cHerkunft,
@@ -283,7 +284,9 @@ class Nl2goManager
 						 c.cAktiv,
 						 c.cAbgeholt,
 						 c.nRegistriert
-						 FROM " . self::CUSTOMERS_TABLE . ' c';
+                         FROM " . self::CUSTOMERS_TABLE . ' c
+                         LEFT JOIN ' . self::NEWSLETTER_SUBSCRIBER_TABLE . ' ns ON c.kKunde = ns.kKunde';
+
 
 		$hours = filter_input(INPUT_POST, 'hours');
 
@@ -308,7 +311,7 @@ class Nl2goManager
 
 		// Filter by subscribed only.
 		if ($onlySubscribed === true) {
-			$join = ' JOIN ' . self::NEWSLETTER_SUBSCRIBER_TABLE . " ns ON c.kKunde = ns.kKunde AND ns.nAktiv = 1";
+			$where[] = 'ns.nAktiv = 1';
 		}
 
 		// Add where if customers should be filtered.
@@ -332,7 +335,7 @@ class Nl2goManager
 		}
 
 		foreach ($customers as $customer) {
-			$customer = $this->decriptData($customer);
+			$customer = $this->decryptData($customer);
 			$customerToReturn = array();
 
 			// Create customer using the field definition.
@@ -369,7 +372,7 @@ class Nl2goManager
 	/**
 	 * Get the product attribute definitions.
 	 *
-	 * @return type Array of field definitions.
+	 * @return array Array of field definitions.
 	 */
 	public function getProductAttributes()
 	{
@@ -379,7 +382,7 @@ class Nl2goManager
 	/**
 	 * Get product informations.
 	 *
-	 * @return type Product info.
+	 * @return mixed Product info.
 	 */
 	public function getProductInfo()
 	{
@@ -402,6 +405,9 @@ class Nl2goManager
 		$productInfo = $productInfoFromDb[0]['kArtikel'];
 		$product = new Artikel();
 		$product->fuelleArtikel($productInfo, false, 0, $language);
+		if ($product->cArtNr != $identifier) {
+			self::sendError('Product not found in this language!');
+		}
 
 		$productPrice = $product->gibPreis(1, false);
 		$productTax = ((float) gibUst($product->kSteuerklasse)) / 100;
@@ -457,7 +463,7 @@ class Nl2goManager
 	 */
 	public function setUnsubscribe()
 	{
-		$email = filter_input(INPUT_POST, 'email');
+		$email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
 
 		if ($email === null) {
 			self::sendError('EMAILNOTPROVIDED');
@@ -552,7 +558,7 @@ class Nl2goManager
 	/**
 	 * Get the field definitions.
 	 *
-	 * @return type array Array of fields from customers table.
+	 * @return array - Array of fields from customers table.
 	 */
 	private static function getFieldDefinitions()
 	{
@@ -611,7 +617,7 @@ class Nl2goManager
 	/**
 	 * Get the product attributes definitions.
 	 *
-	 * @return type array Array of product attributes from article table.
+	 * @return array - Array of product attributes from article table.
 	 */
 	private static function getProductAttributeDefinitions()
 	{
@@ -679,7 +685,7 @@ class Nl2goManager
 	/**
 	 * Returns error as a result of API call.
 	 *
-	 * @param type $message Error message.
+	 * @param string $message Error message.
 	 */
 	public static function sendError($message)
 	{
@@ -699,7 +705,7 @@ class Nl2goManager
 	/**
 	 * Returns data as a result of API call.
 	 *
-	 * @param type $result Result.
+	 * @param mixed $result Result.
 	 */
 	public static function sendData($result)
 	{
@@ -722,7 +728,7 @@ class Nl2goManager
 	/**
 	 * Encodes the string or object and/or subobject properties which are strings to UTF8.
 	 *
-	 * @param type $input string or object to encode.
+	 * @param mixed $input string or object to encode.
 	 */
 	public static function utf8Encode(&$input) {
 		if (is_string($input)) {
@@ -759,12 +765,12 @@ class Nl2goManager
 	}
 
 	/**
-	 * Decrypts encripted fields so that they are readable
+	 * Decrypts encrypted fields so that they are readable
 	 *
 	 * @param array $customer
 	 * @return array - decrypted customer
 	 */
-	private function decriptData($customer)
+	private function decryptData($customer)
 	{
 		$customer['cNachname'] = trim(entschluesselXTEA($customer['cNachname']));
 		$customer['cFirma'] = trim(entschluesselXTEA($customer['cFirma']));
