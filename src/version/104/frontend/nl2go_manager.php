@@ -666,7 +666,6 @@ class Nl2goManager
 			array('id' => 'cSuchbegriffe',				'name' => 'Searches',				'description' => 'Product searches.',				'type' => 'String'),
 			array('id' => 'nSort',						'name' => 'Sort',					'description' => 'Product sort.',					'type' => 'Integer'),
 			array('id' => 'dErscheinungsdatum',			'name' => 'Release date',			'description' => 'Product release date.',			'type' => 'Date'),
-			array('id' => 'Grundpreis',					'name' => 'Grundpreis',				'description' => 'Grundpreis pro Einheit',			'type' => 'Float'),
 			array('id' => 'dErstellt',					'name' => 'Created date',			'description' => 'Product created date.',			'type' => 'Date'),
 			array('id' => 'dZulaufDatum',				'name' => 'Expiration date',		'description' => 'Product expiration date.',		'type' => 'Date'),
 			array('id' => 'dMHD',						'name' => 'Best before date',		'description' => 'Product best before date.',		'type' => 'Date'),

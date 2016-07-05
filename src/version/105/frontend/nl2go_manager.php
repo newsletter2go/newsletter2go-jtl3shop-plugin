@@ -50,7 +50,7 @@ class Nl2goManager
 	 */
 	public function getPluginVersion()
 	{
-		return 3003;
+		return 3004;
 	}
 
 	/**
@@ -666,7 +666,6 @@ class Nl2goManager
 			array('id' => 'cSuchbegriffe',				'name' => 'Searches',				'description' => 'Product searches.',				'type' => 'String'),
 			array('id' => 'nSort',						'name' => 'Sort',					'description' => 'Product sort.',					'type' => 'Integer'),
 			array('id' => 'dErscheinungsdatum',			'name' => 'Release date',			'description' => 'Product release date.',			'type' => 'Date'),
-			array('id' => 'Grundpreis',					'name' => 'Grundpreis',				'description' => 'Grundpreis pro Einheit',			'type' => 'Float'),
 			array('id' => 'dErstellt',					'name' => 'Created date',			'description' => 'Product created date.',			'type' => 'Date'),
 			array('id' => 'dZulaufDatum',				'name' => 'Expiration date',		'description' => 'Product expiration date.',		'type' => 'Date'),
 			array('id' => 'dMHD',						'name' => 'Best before date',		'description' => 'Product best before date.',		'type' => 'Date'),
@@ -680,6 +679,7 @@ class Nl2goManager
 			array('id' => 'cUPC',						'name' => 'UPC',					'description' => 'Product UPC.',					'type' => 'String'),
 			array('id' => 'cHerkunftsland',				'name' => 'Country of origin',		'description' => 'Product country of origin.',		'type' => 'String'),
 			array('id' => 'cEPID',						'name' => 'EPID',					'description' => 'Product EPID.',					'type' => 'String'),
+			array('id' => 'Grundpreis',					'name' => 'Grundpreis',				'description' => 'Grundpreis pro Einheit',			'type' => 'Float')
 		);
 	}
 
