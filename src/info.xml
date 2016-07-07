@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding="ISO-8859-1"?>
 <jtlshop3plugin>
     <Name>Newsletter2Go</Name>
-    <Description>JTL-Shop3-Synchronisation mit Newsletter2Go</Description>
+    <Description>E-Mail Marketing-Integration, mit der Sie einfach Ihre Kontakte synchronisieren und Produkt-Newsletter versenden können</Description>
     <Author>Newsletter2Go</Author>
     <URL>http://www.newsletter2go.de</URL>
     <XMLVersion>102</XMLVersion>
