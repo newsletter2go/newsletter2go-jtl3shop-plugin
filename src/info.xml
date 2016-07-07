@@ -5,7 +5,8 @@
     <Author>Newsletter2Go</Author>
     <URL>http://www.newsletter2go.de</URL>
     <XMLVersion>102</XMLVersion>
-    <ShopVersion>300</ShopVersion>
+    <ShopVersion>319</ShopVersion>
+    <Shop4Version>400</Shop4Version>
     <PluginID>newsletter2go</PluginID>
     <Install>
         <Version nr="100">
