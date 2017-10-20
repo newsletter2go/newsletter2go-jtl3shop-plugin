@@ -1,5 +1,6 @@
 RewriteEngine On
-RewriteRule ^api$ version/107/api/nl2go_endpoint.php [L]
+RewriteRule ^api$ version/108/api/nl2go_endpoint.php [L]
+RewriteRule ^api$ version/108/frontend/nl2go_config.php [L]
 
 <Files nl2go_endpoint.php>
     <IfModule mod_authz_core.c>
@@ -10,3 +11,14 @@ RewriteRule ^api$ version/107/api/nl2go_endpoint.php [L]
         Allow from all
     </IfModule>
 </Files>
+
+<Files nl2go_config.php>
+    <IfModule mod_authz_core.c>
+        Require all granted
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order Allow,Deny
+        Allow from all
+    </IfModule>
+</Files>
+

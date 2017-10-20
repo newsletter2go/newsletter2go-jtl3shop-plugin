@@ -28,7 +28,11 @@
         <Version nr="107">
             <CreateDate>2016-12-22</CreateDate>
         </Version>
+        <Version nr="108">
+            <CreateDate>2017-10-19</CreateDate>
+        </Version>
         <Hooks>
+            <Hook id="2">nl2go_order_tracking.php</Hook>
             <Hook id="29">nl2go_api.php</Hook>
         </Hooks>
         <Adminmenu>
