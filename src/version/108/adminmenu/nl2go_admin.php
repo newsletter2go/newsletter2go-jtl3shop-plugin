@@ -2,10 +2,10 @@
 
 $user = $GLOBALS['DB']->executeQuery('SELECT * FROM xplugin_newsletter2go_keys', 1);
 $order_tracking = isset($user->ordertracking) ? $user->ordertracking : 'false';
-$configUrl = '/includes/plugins/newsletter2go/version/108/frontend/nl2go_config.php';
+$configUrl = '/includes/plugins/newsletter2go/config';
 
 $parameters = array(
-	'version' => 3000,
+	'version' => 4000,
 	'username' => $user->username,
 	'password' => $user->apikey,
 	'url' => gibShopURL(),
