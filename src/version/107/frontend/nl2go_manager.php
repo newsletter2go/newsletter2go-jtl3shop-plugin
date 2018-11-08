@@ -244,7 +244,7 @@ class Nl2goManager
 	 */
 	private function getRealCustomers($onlySubscribed)
 	{
-		$where = array("c.cAktiv = 'Y'");
+		$where = array("c.cAktiv => 'Y'");
 		$join = '';
 
 		$query = "SELECT c.kKunde,
