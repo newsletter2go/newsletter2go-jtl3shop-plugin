@@ -244,7 +244,7 @@ class Nl2goManager
 	 */
 	private function getRealCustomers($onlySubscribed)
 	{
-		$where = array("c.cAktiv => 'Y'");
+		$where = array("c.cAktiv = 'Y'");
 		$join = '';
 
 		$query = "SELECT c.kKunde,
@@ -298,7 +298,7 @@ class Nl2goManager
 		$group = filter_input(INPUT_POST, 'group');
 
 		// Get only customers from requested group.
-		if (empty($group) === false) {
+		if (empty($group) === false && $group != self::NEWSLETTER_SUBSCRIBER_GROUP_ID) {
 			$where[] = "c.kKundengruppe = $group";
 		}
 
@@ -401,6 +401,12 @@ class Nl2goManager
 		}
 
 		$language = filter_input(INPUT_POST, 'language');
+
+		$languages = $this->getLanguages();
+
+		if (!empty($language) && !array_key_exists($language, $languages) && !in_array($language, $languages)) {
+            self::sendError(sprintf('Language %s not found!', $language));
+        }
 
 		$productInfo = $productInfoFromDb[0]['kArtikel'];
 		$product = new Artikel();
