@@ -50,7 +50,7 @@ class Nl2goManager
 	 */
 	public function getPluginVersion()
 	{
-		return 4000;
+		return 4002;
 	}
 
 	/**
