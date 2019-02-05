@@ -244,7 +244,7 @@ class Nl2goManager
 	 */
 	private function getRealCustomers($onlySubscribed)
 	{
-		$where = array("c.cAktiv => 'Y'");
+		$where = array("c.cAktiv = 'Y'");
 		$join = '';
 
 		$query = "SELECT c.kKunde,
@@ -408,6 +408,11 @@ class Nl2goManager
 		if ($product->cArtNr != $identifier) {
 			self::sendError('Product not found in this language!');
 		}
+
+        // For instances where customer has setting enabled that prices are only visible to logged in users
+        if ($_SESSION['Kundengruppe']->darfPreiseSehen !== 1) {
+            $_SESSION['Kundengruppe']->darfPreiseSehen = 1;
+        }
 
 		$productPrice = $product->gibPreis(1, false);
 		$productTax = ((float) gibUst($product->kSteuerklasse)) / 100;
