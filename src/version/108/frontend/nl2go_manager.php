@@ -438,7 +438,7 @@ class Nl2goManager
             }
 
             if ($attributeName === 'oldPriceNet') {
-                $productToReturn[$attributeName] = isset($product->Preise->alterVK[1]) ? round($product->Preise->alterVK[1], 2) : false;;
+                $productToReturn[$attributeName] = isset($product->Preise->alterVK[1]) ? round($product->Preise->alterVK[1], 2) : false;
                 continue;
             }
 
