@@ -472,9 +472,9 @@ class Nl2goManager
 			self::sendError('EMAILNOTPROVIDED');
 		}
 
-		$GLOBALS["DB"]->executeQuery('DELETE FROM ' . self::NEWSLETTER_SUBSCRIBER_TABLE . " WHERE cEmail = '$email'", 1);
+        $affectedRows = $GLOBALS["DB"]->executeQuery('DELETE FROM ' . self::NEWSLETTER_SUBSCRIBER_TABLE . " WHERE cEmail = '$email'", 3);
 
-		return true;
+        return $affectedRows > 0;
 	}
 
 	/**
@@ -521,9 +521,9 @@ class Nl2goManager
 			now()
 		);";
 
-		$GLOBALS["DB"]->executeQuery($query, 1);
+        $lastInsertId = $GLOBALS["DB"]->executeQuery($query, 7);
 
-		return true;
+        return isset($lastInsertId) && is_numeric($lastInsertId);
 	}
 
 	/**
