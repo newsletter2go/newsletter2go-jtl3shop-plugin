@@ -176,6 +176,7 @@ class Nl2goManager
 	{
 		$query = "SELECT '" . self::NEWSLETTER_SUBSCRIBER_GROUP_NAME . "' as kKundengruppe,
 						 ns.kKunde,
+						 ns.kSprache as kSprache,
 						 CASE ns.cAnrede
 							WHEN 'w' THEN 'f'
 							WHEN 'm' THEN 'm'
@@ -203,6 +204,7 @@ class Nl2goManager
 
 		// Only subscribers without customers.
 		$subscribers = $GLOBALS['DB']->executeQuery($query, 9);
+        $languages = $this->getLanguages();
 
 		$subscribersToReturn = array();
 
@@ -225,6 +227,12 @@ class Nl2goManager
 
 				// Determine whether the field exists in table and has a value.
 				$fieldValid = array_key_exists($fieldName, $subscriber) && empty($subscriber[$fieldName]) === false;
+
+                // if current field is language, map the language and go to next field.
+                if ($fieldValid === true && $fieldName === 'kSprache') {
+                    $subscriberToReturn[$fieldName] = $languages[$subscriber[$fieldName]];
+                    continue;
+                }
 
 				// Read field value.
 				$subscriberToReturn[$fieldName] = $fieldValid === true ? $subscriber[$fieldName] : '';
@@ -327,6 +335,7 @@ class Nl2goManager
 		}
 
 		$customers = $GLOBALS['DB']->executeQuery($query, 9);
+        $languages = $this->getLanguages();
 
 		$customersToReturn = array();
 
@@ -357,6 +366,12 @@ class Nl2goManager
 					$customerToReturn[$fieldName] = $customerGroup->getName();
 					continue;
 				}
+
+                // if current field is language, map the language and go to next field.
+                if ($fieldValid === true && $fieldName === 'kSprache') {
+                    $customerToReturn[$fieldName] = $languages[$customer[$fieldName]];
+                    continue;
+                }
 
 				// Read field value.
 				$customerToReturn[$fieldName] = $fieldValid === true ? $customer[$fieldName] : '';
