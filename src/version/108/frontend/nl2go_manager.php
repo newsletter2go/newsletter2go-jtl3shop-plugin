@@ -420,7 +420,7 @@ class Nl2goManager
 
 		$language = filter_input(INPUT_POST, 'language');
         $languages = $this->getLanguages();
-        if ($languages !== null && !array_key_exists($language, $languages)) {
+        if (!empty($language) && !array_key_exists($language, $languages)) {
             self::sendError('Product not found in this language!');
         }
 		$productInfo = $productInfoFromDb[0]['kArtikel'];
