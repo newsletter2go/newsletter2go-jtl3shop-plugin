@@ -145,14 +145,12 @@ class Nl2goManager
 		$subscriber = filter_input(INPUT_POST, 'subscriber', FILTER_VALIDATE_BOOLEAN);
 		$group = filter_input(INPUT_POST, 'group');
 
-		// Include real customers.
-		$customers = $this->getRealCustomers($subscriber);
-
-		// Get subscribed customer only if group is newsletter subscriber group.
-		if ($group === self::NEWSLETTER_SUBSCRIBER_GROUP_ID) {
-			$subscribers = $this->getNewsletterSubscribers();
-			$customers = array_merge($customers, $subscribers);
-		}
+        // Get subscribed customer only if group is newsletter subscriber group.
+        if ($group === self::NEWSLETTER_SUBSCRIBER_GROUP_ID) {
+            $customers = $this->getNewsletterSubscribers();
+        } else {
+            $customers = $this->getRealCustomers($subscriber);
+        }
 
 		return $customers;
 	}
