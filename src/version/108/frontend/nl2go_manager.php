@@ -223,8 +223,8 @@ class Nl2goManager
 				// Name of the field in db.
 				$fieldName = $fieldDefinition['id'];
 
-				// If field is not requested, don't add it.
-				if (self::isFieldRequested($fieldName) === false) {
+				// If field is not requested, don't add it. Include cMail to build uniqueId in connector.
+				if (self::isFieldRequested($fieldName) === false && $fieldName !== 'cMail') {
 					continue;
 				}
 
@@ -419,7 +419,10 @@ class Nl2goManager
 		}
 
 		$language = filter_input(INPUT_POST, 'language');
-
+        $languages = $this->getLanguages();
+        if ($languages !== null && !array_key_exists($language, $languages)) {
+            self::sendError('Product not found in this language!');
+        }
 		$productInfo = $productInfoFromDb[0]['kArtikel'];
 		$product = new Artikel();
 		$product->fuelleArtikel($productInfo, false, 0, $language);
