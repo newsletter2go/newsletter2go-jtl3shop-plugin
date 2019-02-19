@@ -15,6 +15,11 @@ class Nl2goManager
 	const NEWSLETTER_SUBSCRIBER_TABLE = '`tnewsletterempfaenger`';
 	const NEWSLETTER_SUBSCRIBER_GROUP_ID = 'only_subscribers';
 	const NEWSLETTER_SUBSCRIBER_GROUP_NAME = 'Newsletter subscribers';
+	// returntypes for NiceDB::executeQuery (list not exhaustive, see NiceDB implementation for more options)
+    const RETURN_FETCH_ONE = 1;
+    const RETURN_ROW_COUNT = 3;
+    const RETURN_LAST_INSERT_ID = 7;
+    const RETURN_FETCH_ALL_ASSOC = 9;
 
 	/**
 	 * @var array List of methods supported on API.
@@ -472,7 +477,7 @@ class Nl2goManager
 			self::sendError('EMAILNOTPROVIDED');
 		}
 
-        $affectedRows = $GLOBALS["DB"]->executeQuery('DELETE FROM ' . self::NEWSLETTER_SUBSCRIBER_TABLE . " WHERE cEmail = '$email'", 3);
+        $affectedRows = $GLOBALS["DB"]->executeQuery('DELETE FROM ' . self::NEWSLETTER_SUBSCRIBER_TABLE . " WHERE cEmail = '$email'", self::RETURN_ROW_COUNT);
 
         return $affectedRows > 0;
 	}
@@ -521,7 +526,7 @@ class Nl2goManager
 			now()
 		);";
 
-        $lastInsertId = $GLOBALS["DB"]->executeQuery($query, 7);
+        $lastInsertId = $GLOBALS["DB"]->executeQuery($query, self::RETURN_LAST_INSERT_ID);
 
         return isset($lastInsertId) && is_numeric($lastInsertId);
 	}
