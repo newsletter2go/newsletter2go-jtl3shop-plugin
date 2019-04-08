@@ -25,7 +25,7 @@ make_file:
   artifacts:
 #    name: "JTLShop_nl2go_?_?_??.zip"
     paths:
-      - .gitlab/release/*.zip
+      - tmp/newsletter2go/*.zip
     expire_in: 1 week
 
 #push_to_ftp:
