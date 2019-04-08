@@ -1,0 +1,13 @@
+before_script:
+# what needs to be done before each job
+# install and configure shit
+
+verify_version_done:
+  script:
+
+make_file:
+  script:
+
+push_to_ftp:
+  script:
+
