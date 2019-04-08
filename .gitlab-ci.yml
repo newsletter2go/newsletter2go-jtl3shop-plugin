@@ -18,7 +18,9 @@ before_script:
 make_file:
   stage: build
   when: manual
-  script: make version=0.0.00
+  script:
+    - make version=0.0.00
+    - make clean
   #.gitlab/makefile.sh
   artifacts:
     name: "$JTLShop_nl2go_?_?_??"
