@@ -1,13 +1,29 @@
+
+
+variables:
+
+
+stages:
+  - verify
+  - build
+  - deploy
+
 before_script:
 # what needs to be done before each job
 # install and configure shit
 
 verify_version_done:
-  script:
+#  script:
 
 make_file:
-  script:
+  stage: build
+  when: manual
+  script: .gitlab/makefile.sh
+  artifacts:
+    paths:
+      - .gitlab/release
+    expire_in: 1 week
 
 push_to_ftp:
-  script:
+#  script:
 
