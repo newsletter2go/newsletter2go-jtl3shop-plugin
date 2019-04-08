@@ -22,11 +22,11 @@ make_file:
     - make version=0.0.00
     - make clean
   #.gitlab/makefile.sh
-  artifacts:
-    name: "$JTLShop_nl2go_?_?_??"
-    paths:
-      - .gitlab/release
-    expire_in: 1 week
+#  artifacts:
+#    name: "JTLShop_nl2go_?_?_??.zip"
+#    paths:
+#      - .gitlab/release/JTLShop_nl2go_?_?_??.zip
+#    expire_in: 1 week
 
 #push_to_ftp:
 #  script:
