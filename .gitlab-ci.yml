@@ -1,7 +1,5 @@
-
-
 variables:
- VERSION: "?_?_??"
+ VERSION: "1_1_11_PIPELINE_TEST"
 
 stages:
   - verify
@@ -10,25 +8,24 @@ stages:
 
 before_script:
 # what needs to be done before each job
-# install and configure shit
+# install and configure dependencys
   - apt-get update && apt-get install zip && apt-get install unzip
-
-#verify_version_done:
-#  script:
 
 make_file:
   stage: build
   when: manual
   script:
-    - make version=0.0.00
+    - make version=$VERSION
     - make clean
-  #.gitlab/makefile.sh
   artifacts:
-#    name: "JTLShop_nl2go_?_?_??.zip"
     paths:
       - ./*.zip
-    expire_in: 1 week
+    expire_in: 1 weekw
 
 #push_to_ftp:
 #  script:
+
+update_jira:
+  script: updateJira.sh
+  when: manual
 
