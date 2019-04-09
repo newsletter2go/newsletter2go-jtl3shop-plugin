@@ -20,7 +20,7 @@ make_file:
   artifacts:
     paths:
       - ./*.zip
-    expire_in: 1 weekw
+    expire_in: 1 week
 
 #push_to_ftp:
 #  script:
