@@ -26,6 +26,7 @@ make_file:
 #  script:
 
 update_jira:
+  stage: deploy
   script: updateJira.sh
   when: manual
 
