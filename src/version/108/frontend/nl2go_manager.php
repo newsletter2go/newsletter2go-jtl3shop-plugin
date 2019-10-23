@@ -55,7 +55,7 @@ class Nl2goManager
 	 */
 	public function getPluginVersion()
 	{
-		return 4004;
+		return 4003;
 	}
 
 	/**
@@ -268,7 +268,7 @@ class Nl2goManager
 						 END as cAnrede,
 						 c.cTitel,
 						 if(ns.cVorname is null or ns.cVorname = '', c.cVorname, ns.cVorname) as cVorname,
-						 if(c.cNachname is not null and c.cNachname != '', c.cNachname, ns.cNachname) as cNachname,
+						 if(ns.cNachname is null or ns.cNachname = '', c.cNachname, ns.cNachname) as cNachname,
 						 c.cFirma,
 						 c.cZusatz,
 						 c.cStrasse,
