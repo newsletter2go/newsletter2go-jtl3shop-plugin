@@ -1,5 +1,5 @@
-version = 0_0_00
-outfile = JTLShop_nl2go_$(version).zip
+version =
+outfile = plugin-jtl-4$(version).zip
 
 $(version): $(outfile)
 

@@ -4,7 +4,7 @@
     <Description>E-Mail Marketing-Integration, mit der Sie einfach Ihre Kontakte synchronisieren und Produkt-Newsletter versenden können</Description>
     <Author>Newsletter2Go</Author>
     <URL>http://www.newsletter2go.de</URL>
-    <XMLVersion>102</XMLVersion>
+    <XMLVersion>110</XMLVersion>
     <ShopVersion>319</ShopVersion>
     <Shop4Version>400</Shop4Version>
     <PluginID>newsletter2go</PluginID>
@@ -33,6 +33,9 @@
         </Version>
         <Version nr="109">
             <CreateDate>2019-10-23</CreateDate>
+        </Version>
+        <Version nr="110">
+            <CreateDate>2020-02-13</CreateDate>
         </Version>
         <Hooks>
             <Hook id="29">nl2go_api.php</Hook>
